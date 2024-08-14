@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddAzureBlobClient("BlobConnection");
+builder.AddAzureBlobClient("blobs");
 builder.Configuration.AddAzureKeyVaultSecrets("secrets");
 
 // Add service defaults & Aspire components.
