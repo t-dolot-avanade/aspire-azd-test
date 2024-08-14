@@ -13,6 +13,8 @@ param location string
 param principalId string = ''
 
 @secure()
+param blobs string
+@secure()
 param secrets string
 
 var tags = {
@@ -35,15 +37,6 @@ module resources 'resources.bicep' = {
   }
 }
 
-module StorageConnection 'StorageConnection/StorageConnection.module.bicep' = {
-  name: 'StorageConnection'
-  scope: rg
-  params: {
-    location: location
-    principalId: resources.outputs.MANAGED_IDENTITY_PRINCIPAL_ID
-    principalType: 'ServicePrincipal'
-  }
-}
 output MANAGED_IDENTITY_CLIENT_ID string = resources.outputs.MANAGED_IDENTITY_CLIENT_ID
 output MANAGED_IDENTITY_NAME string = resources.outputs.MANAGED_IDENTITY_NAME
 output AZURE_LOG_ANALYTICS_WORKSPACE_NAME string = resources.outputs.AZURE_LOG_ANALYTICS_WORKSPACE_NAME
@@ -52,5 +45,3 @@ output AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID string = resources.outputs.A
 output AZURE_CONTAINER_APPS_ENVIRONMENT_NAME string = resources.outputs.AZURE_CONTAINER_APPS_ENVIRONMENT_NAME
 output AZURE_CONTAINER_APPS_ENVIRONMENT_ID string = resources.outputs.AZURE_CONTAINER_APPS_ENVIRONMENT_ID
 output AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN string = resources.outputs.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN
-
-output STORAGECONNECTION_BLOBENDPOINT string = StorageConnection.outputs.blobEndpoint
