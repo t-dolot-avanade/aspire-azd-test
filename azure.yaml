@@ -4,5 +4,5 @@ name: aspire-azd-test
 services:  
   app:
     language: dotnet
-    project: .\AspireAppTest.AppHost\AspireAppTest.AppHost.csproj
+    project: ./AspireAppTest.AppHost\AspireAppTest.AppHost.csproj
     host: containerapp
