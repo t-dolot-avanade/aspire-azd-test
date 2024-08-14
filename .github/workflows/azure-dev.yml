@@ -26,6 +26,7 @@ jobs:
       AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
       AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
       AZURE_RESOURCE_GROUP: rg-dev
+      AZURE_BLOBS: DefaultEndpointsProtocol=https;AccountName=storageconnectionpsa6u5m;AccountKey=jYlmQZJD3LouJ44OlLDFOwJ4A7dVhX32nQXkRIQ8EVpNVgblBafpj9QaZAF4ms6Yh9Ai0YhnH7qA+AStcxUVyQ==;EndpointSuffix=core.windows.net
     steps:
       - name: Checkout
         uses: actions/checkout@v4

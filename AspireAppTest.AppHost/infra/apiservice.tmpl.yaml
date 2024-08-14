@@ -21,8 +21,8 @@ properties:
       - server: {{ .Env.AZURE_CONTAINER_REGISTRY_ENDPOINT }}
         identity: {{ .Env.AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID }}
     secrets:
-      - name: connectionstrings--blobconnection
-        value: '{{ .Env.STORAGECONNECTION_BLOBENDPOINT }}'
+      - name: connectionstrings--blobs
+        value: '{{ securedParameter "blobs" }}'
       - name: connectionstrings--secrets
         value: '{{ securedParameter "secrets" }}'
   template:
@@ -40,8 +40,8 @@ properties:
             value: "true"
           - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY
             value: in_memory
-          - name: ConnectionStrings__BlobConnection
-            secretRef: connectionstrings--blobconnection
+          - name: ConnectionStrings__blobs
+            secretRef: connectionstrings--blobs
           - name: ConnectionStrings__secrets
             secretRef: connectionstrings--secrets
     scale:

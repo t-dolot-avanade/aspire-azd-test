@@ -5,6 +5,9 @@
       "principalId": {
         "value": "${AZURE_PRINCIPAL_ID}"
       },
+      "blobs": {
+        "value": "${AZURE_BLOBS}"
+      },
       "secrets": {
         "value": "${AZURE_SECRETS}"
       },
