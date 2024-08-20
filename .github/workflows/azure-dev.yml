@@ -60,10 +60,14 @@ jobs:
         env:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Log in to Azure CLI
+        run: |
+          az login --service-principal -u 2e5bf8ac-1f86-4a97-85e4-adb73b20de9d -p ${{ secrets.CLIENTSECRET }} --tenant 9e5f3c98-6dc2-4dd5-8dc1-d52896758a40
+
       - name: Secret 1
         run: |
-          az keyvault secret set --name MySecretName --vault-name sop-genai-td --value "blabla"
+          az keyvault secret set --name MySecretName1 --vault-name sop-genai-td --value "blabla"
 
       - name: Secret 2
         run: |
-          az keyvault secret set --name MySecretName --vault-name sop-genai-td --value ${{secrets.AZD_INITIAL_ENVIRONMENT_CONFIG}}
+          az keyvault secret set --name MySecretName2 --vault-name sop-genai-td --value ${{secrets.AZD_INITIAL_ENVIRONMENT_CONFIG}}
