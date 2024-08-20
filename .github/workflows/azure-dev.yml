@@ -70,4 +70,4 @@ jobs:
 
       - name: Secret 2
         run: |
-          az keyvault secret set --name MySecretName2 --vault-name sop-genai-td --value ${{secrets.AZD_INITIAL_ENVIRONMENT_CONFIG}}
+          az keyvault secret set --name MySecretName2 --vault-name sop-genai-td --value "${{secrets.AZD_INITIAL_ENVIRONMENT_CONFIG}}"
