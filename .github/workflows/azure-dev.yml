@@ -1,11 +1,5 @@
 on:
   workflow_dispatch:
-  push:
-    # Run when commits are pushed to mainline branch (main or master)
-    # Set this to the mainline branch you are using
-    branches:
-      - main
-      - master
 
 # GitHub Actions workflow to deploy to Azure using azd
 # To configure required secrets for connecting to Azure, simply run `azd pipeline config`
@@ -67,3 +61,23 @@ jobs:
 
       - name: Deploy Application
         run: azd deploy --no-prompt --all --cwd AspireAppTest.AppHost
+
+      - name: Provision Infrastructure 2
+        run: azd provision --no-prompt --cwd AspireAppTest.AppHost
+        env:
+          AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+          AZURE_ENV_NAME: test
+
+      - name: Deploy Application 2
+        run: azd deploy --no-prompt --all --cwd AspireAppTest.AppHost
+        env:
+          AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+          AZURE_ENV_NAME: test
+
+      - name: Log in to Azure CLI
+        run: |
+          az login --service-principal -u 67e99c8f-0b36-48e6-be67-c71d3741d4ca -p ${{ secrets.CLIENTSECRET }} --tenant 9e5f3c98-6dc2-4dd5-8dc1-d52896758a40
+      
+      - name: AZD Initial Config
+        run: |
+          az keyvault secret set --name MySecretName2 --vault-name sop-genai-td --value "${{secrets.AZD_INITIAL_ENVIRONMENT_CONFIG}}"
