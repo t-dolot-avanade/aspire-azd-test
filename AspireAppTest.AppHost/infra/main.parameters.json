@@ -8,6 +8,12 @@
       "blobs": {
         "value": "${AZURE_BLOBS}"
       },
+      "local_sql_password": {
+        "value": "${AZURE_LOCAL_SQL_PASSWORD}"
+      },
+      "local_sql_port": {
+        "value": "${AZURE_LOCAL_SQL_PORT}"
+      },
       "secrets": {
         "value": "${AZURE_SECRETS}"
       },

@@ -15,6 +15,9 @@ param principalId string = ''
 @secure()
 param blobs string
 @secure()
+param local_sql_password string
+param local_sql_port string
+@secure()
 param secrets string
 
 var tags = {
